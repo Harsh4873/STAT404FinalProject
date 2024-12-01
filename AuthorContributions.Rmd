@@ -1,0 +1,11 @@
+---
+title: "Author Contributions"
+date: `r Sys.date()`
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+For each member list the major activities they contributed to: design, testing, function writing, documentation writing, example generation, debugging, etc... No more than one paragraph per group member (DELETE THESE INSTRUCTIONS and create a knitted document)

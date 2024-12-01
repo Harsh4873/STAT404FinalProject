@@ -1,0 +1,11 @@
+---
+title: "Package Documentation"
+date: `r Sys.date()`
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Create a narrative document describing the full functionality of your package. Include well formatted text and code examples. This is to demo creating a package vignette. If it helps, imagine you are creating a tutorial for a statistics student in STAT 211/212. (DELETE THESE INSTRUCTIONS and create a knitted document)
