@@ -9,3 +9,57 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 Create a narrative document describing the full functionality of your package. Include well formatted text and code examples. This is to demo creating a package vignette. If it helps, imagine you are creating a tutorial for a statistics student in STAT 211/212. (DELETE THESE INSTRUCTIONS and create a knitted document)
+
+Confidence Analysis Examples (Ritvik V)
+
+The purpose of this package is to facilitate simulations and visualizations of statistical concepts related to confidence intervals and sampling distributions. The primary function, visualize_confidence_levels, simulates repeated sampling for two groups with specified proportions and sample sizes. It calculates confidence intervals for the difference in proportions and visualizes the proportion of intervals that capture the true difference.
+
+Simple Example:
+library(ggplot2)
+
+visualize_confidence_levels(
+  p1 = 0.6,  
+  p2 = 0.5, 
+  n1 = 30,   
+  n2 = 30,   
+  rep_steps = c(10, 50, 100, 500, 1000))
+
+The expected output is a line plot showing the proportion of confidence intervals that include the true difference in proportions.
+
+Test Case for smaller sample sizes:
+
+Smaller sample sizes tend to have wider confidence intervals, making it harder for the intervals to contain the true difference.
+
+Example:
+visualize_confidence_levels(
+  p1 = 0.6, p2 = 0.5,
+  n1 = 10, n2 = 10,
+  rep_steps = c(10, 50, 100, 500, 1000)
+)
+
+This plot will show slower convergence to the theoretical level compared to larger sample sizes.
+
+Test Case for different significance values:
+
+Changing the significance level affects the width of the confidence intervals. Smaller significance results in more conservative intervals.
+
+Example:
+
+visualize_confidence_levels(
+  p1 = 0.6, p2 = 0.5,
+  n1 = 30, n2 = 30,
+  rep_steps = c(10, 50, 100, 500, 1000),
+  alpha = 0.01  
+)
+
+We can expect the proportions to converge to 99%
+
+Error handling examples:
+
+# invalid proportions
+visualize_confidence_levels(p1 = 1.5, p2 = 0.5, n1 = 30, n2 = 30, rep_steps = c(10, 50))
+The error is that proportions p1 and p2 must be between 0 and 1
+
+# negative sample size
+visualize_confidence_levels(p1 = 0.6, p2 = 0.5, n1 = -30, n2 = 30, rep_steps = c(10, 50))
+The error is that sample sizes n1 and n2 must be positive integers
