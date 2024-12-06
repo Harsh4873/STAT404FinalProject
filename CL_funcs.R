@@ -23,6 +23,9 @@ visualize_confidence_levels <- function(p1, p2, n1, n2, rep_steps, alpha = 0.05)
   if (!is.numeric(p1) || !is.numeric(p2) || p1 < 0 || p1 > 1 || p2 < 0 || p2 > 1) {
     stop("Proportions p1 and p2 must be between 0 and 1.")
   }
+  if (!is.numeric(rep_steps) || any(rep_steps <= 0)) {
+    stop("Repetition steps (rep_steps) must be a numeric vector of positive values.")
+  }
   
   # nested function whoch simulates the confidence intervals for a given number of repetitions
   simulate_ci <- function(reps) {
