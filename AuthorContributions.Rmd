@@ -9,3 +9,17 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 For each member list the major activities they contributed to: design, testing, function writing, documentation writing, example generation, debugging, etc... No more than one paragraph per group member (DELETE THESE INSTRUCTIONS and create a knitted document)
+
+# Author Contributions
+
+## Harsh Dave
+Harsh was responsible for implementing the Core Simulation Functions, including the design and coding of `simulation_of_binary_response`, `simulation_for_two_sample_data`, `calculate_the_difference_in_proportions`, `repeated_simulations_for_one_simulation`, and `visualize_theoretical_sampling_distribution`. Additionally, Harsh developed comprehensive unit tests to ensure the robustness of these functions and created detailed examples in the documentation to demonstrate their usage. Harsh also participated in the debugging process and contributed to the overall project design strategy.
+
+## Ritvik V
+Ritvik focused on creating the Confidence Interval analyses, including the implementation of functions related to visualizing confidence levels and conducting hypothesis tests. Ritvik also developed corresponding tests to validate these analyses and contributed to the documentation and example generation to facilitate user understanding.
+
+## Race
+Race was tasked with designing and facilitating the Permutation Test. This included developing the underlying functions, creating unit tests to verify their correctness, and crafting examples to illustrate the permutation testing process. Race also played a key role in the project design, ensuring that the permutation tests integrated seamlessly with other components of the project.
+
+## Chris
+Chris focused on implementing the Bootstrap Analysis, developing functions to perform bootstrap resampling, creating unit tests to validate bootstrap procedures, and generating examples to demonstrate bootstrap uncertainty estimation. Chris also contributed to the project design and collaborated with team members to ensure consistency and reliability across all project components.

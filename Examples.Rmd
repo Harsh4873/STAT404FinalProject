@@ -10,6 +10,68 @@ knitr::opts_chunk$set(echo = TRUE)
 
 Create a narrative document describing the full functionality of your package. Include well formatted text and code examples. This is to demo creating a package vignette. If it helps, imagine you are creating a tutorial for a statistics student in STAT 211/212. (DELETE THESE INSTRUCTIONS and create a knitted document)
 
+# Visualize theoretical sampling distributions (Harsh Dave)
+
+# The purpose of this package is to facilitate simulations and visualizations of statistical concepts related to confidence intervals and sampling distributions. Below are examples demonstrating the core functionalities of the package.
+
+## Simulation of Binary Responses
+
+### Equal Groups
+
+# set.seed(123)
+# data_equal <- simulation_for_two_sample_data(p1 = 0.5, p2 = 0.5, n1 = 100, n2 = 100)
+# head(data_equal)
+
+### Unequal Groups
+
+# Simulate binary responses for two unequal groups
+# set.seed(456)
+# data_unequal <- simulation_for_two_sample_data(p1 = 0.7, p2 = 0.3, n1 = 80, n2 = 120)
+# head(data_unequal)
+
+### Low Difference
+
+# Calculate difference in proportions for low difference scenario
+# data_low_diff <- simulation_for_two_sample_data(p1 = 0.3, p2 = 0.35, n1 = 100, n2 = 100)
+# diff_low <- calculate_the_difference_in_proportions(data_low_diff)
+# diff_low
+
+### High Difference
+
+# Calculate difference in proportions for high difference scenario
+# data_high_diff <- simulation_for_two_sample_data(p1 = 0.1, p2 = 0.6, n1 = 200, n2 = 200)
+# diff_high <- calculate_the_difference_in_proportions(data_high_diff)
+# diff_high
+
+### Small Sample
+
+# Perform repeated simulations with small sample sizes and few repetitions
+# set.seed(789)
+# differences_small <- repeated_simulations_for_one_simulation(p1 = 0.3, p2 = 0.4, n1 = 50, n2 = 50, num_simulations = 100)
+# hist(differences_small, main = "Histogram of Differences (Small Sample)", xlab = "Difference in Proportions")
+
+### Large Sample
+
+# Perform repeated simulations with large sample sizes and many repetitions
+# set.seed(101112)
+# differences_large <- repeated_simulations_for_one_simulation(p1 = 0.2, p2 = 0.5, n1 = 500, n2 = 500, num_simulations = 10000)
+# Visualize the sampling distribution
+# visualize_theoretical_sampling_distribution(simulation_results = differences_large, true_difference = 0.2 - 0.5, n1 = 500, n2 = 500)
+
+### Small Sample
+# Visualize sampling distribution for small sample sizes
+# set.seed(131415)
+# differences_small_vis <- repeated_simulations_for_one_simulation(p1 = 0.3, p2 = 0.4, n1 = 50, n2 = 50, num_simulations = 1000)
+# visualize_theoretical_sampling_distribution(simulation_results = differences_small_vis, true_difference = 0.3 - 0.4, n1 = 50, n2 = 50)
+
+### Large Sample
+
+# Visualize sampling distribution for large sample sizes
+# set.seed(161718)
+# differences_large_vis <- repeated_simulations_for_one_simulation(p1 = 0.2, p2 = 0.5, n1 = 500, n2 = 500, num_simulations = 10000)
+# visualize_theoretical_sampling_distribution(simulation_results = differences_large_vis, true_difference = 0.2 - 0.5, n1 = 500, n2 = 500)
+
+
 # Confidence Analysis Examples (Ritvik V)
 
 # The purpose of this package is to facilitate simulations and visualizations of statistical concepts related to confidence intervals and sampling distributions. The primary function, # visualize_confidence_levels, simulates repeated sampling for two groups with specified proportions and sample sizes. It calculates confidence intervals for the difference in # proportions and visualizes the proportion of intervals that capture the true difference.
