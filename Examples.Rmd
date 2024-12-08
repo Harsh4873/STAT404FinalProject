@@ -93,3 +93,69 @@ Create a narrative document describing the full functionality of your package. I
   #          Can not have negative permutations
 
 # test.that("Permutation test works", permutation.test(c(rep(1, n), rep(2, n)), c(rbinom(n, 1, .4), rbinom(n, 1, .6)), num.reps = 1000))
+
+
+
+
+# Bootstrapping (Christopher Coleman)
+# These functions are intended to perform the bootstrapping algorithm to calculate simulated test statistics and visualize their differences
+# The purpose of these functions is to attempt to create a theoretical confidence interval without mathematical derivation of a function for our parameters.
+
+# Examples
+
+# Bootstrapping algorithm with good input
+x1 <- 10
+n1 <- 20
+x2 <- 15
+n2 <- 25
+result <- calc_bootstrap_stats(x1, n1, x2, n2)
+
+# returns a list of lists of everything used in the bootstrap calculations needed for visualization
+# specifically, lists of the difference between simulated statistics, theoretical SE, bootstrap SE, theoretical CI, bootstrap CI, bootstrap differences, and confidence level 
+
+# Bootstrapping algorithm with bad input
+
+x1 <- 10
+n1 <- 20
+x2 <- 15
+n2 <- -25
+result <- calc_bootstrap_stats(x1, n1, x2, n2)
+
+# Returns: Error in calc_bootstrap_stats(x1, n1, x2, n2) : 
+#          Number of observations (n1, n2) must be greater than zero.
+
+# Visualization (takes input from the result list)
+
+x1 <- 10
+n1 <- 20
+x2 <- 15
+n2 <- 25
+result <- calc_bootstrap_stats(x1, n1, x2, n2)
+
+visualize_bootstrap_stats(result$bootstrap_diffs, result$CI_theoretical, result$CI_bootstrap)
+
+# produces a graph showing the difference between the theoretical CI and bootstrap CI
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
