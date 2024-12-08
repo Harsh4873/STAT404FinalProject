@@ -9,3 +9,10 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 For each member list the major activities they contributed to: design, testing, function writing, documentation writing, example generation, debugging, etc... No more than one paragraph per group member (DELETE THESE INSTRUCTIONS and create a knitted document)
+
+
+Race Zwieg - 
+Designed and implemented the permutation tests for the project. I first began by creating and calculating the test statistics for the repeated permutations.
+This included allocating the appropriate group numbers, calculating the means for the groups, and using that data to calculate the test statistic.
+Next, a ggplot histogram was created, overlayed with a density line to visualize the permutation and theoretucal sampling distribution.
+Finally, these permutations were tested using test_that and a few example seeds and numbers. These tests all returned affirmative and correct.
