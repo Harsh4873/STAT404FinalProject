@@ -1,7 +1,7 @@
 library(testthat)
 library(ggplot2)
 
-permutation_test = function(group.labels, responses, num_reps, alpha = 0.05) {
+permutation_test = function (group.labels, responses, num_reps, alpha = 0.05) {
   #Check to make sure it is a valid test
   if (!is.numeric(num_reps) || num_reps <= 0) {
     stop("Can not have negative permutations")
@@ -42,7 +42,7 @@ permutation_test = function(group.labels, responses, num_reps, alpha = 0.05) {
 }
 
 # Example usage
-set.seed(123)
+set.seed(1)
 n = 50
 p1 = 0.6
 p2 = 0.4
@@ -50,7 +50,7 @@ responses = c(rbinom(n, 1, p1), rbinom(n, 1, p2))
 group.labels = c(rep(1, n), rep(2, n))
 permutation_test(group.labels, responses, num_reps = 1000)
 
-set.seed(120)
+set.seed(2)
 n = 70
 p1 = 0.4
 p2 = 0.9
