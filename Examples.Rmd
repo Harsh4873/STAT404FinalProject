@@ -92,4 +92,4 @@ Create a narrative document describing the full functionality of your package. I
   # Returns: Error in permutation_test(group.labels, responses, num_reps = -5) : 
   #          Can not have negative permutations
 
-test.that("Permutation test works", permutation.test(c(rep(1, n), rep(2, n)), c(rbinom(n, 1, .4), rbinom(n, 1, .6)), num.reps = 1000))
+# test.that("Permutation test works", permutation.test(c(rep(1, n), rep(2, n)), c(rbinom(n, 1, .4), rbinom(n, 1, .6)), num.reps = 1000))
