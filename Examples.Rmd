@@ -68,31 +68,57 @@ Create a narrative document describing the full functionality of your package. I
 # Permutation Tests (Race Zwieg)
 # These tests are intended to redistribute the group numbers along the observations and calculate the statistic of interest.
 # The purpose of these tests is to see if there is a distinctive difference between the observed test statistic and the reallocated test statistic.
+# These test use the follwoing functions: responses and permutation.test
 
 # Below are a few examples of the Permutation tests in action:
 
-# Good example: 
-# set.seed(2)
-# n = 50
-# p1 = 0.6
-# p2 = 0.4
-# responses = c(rbinom(n, 1, p1), rbinom(n, 1, p2))
-# group.labels = c(rep(1, n), rep(2, n))
-# permutation_test(group.labels, responses, num_reps = 1000)
-    # This returns an accurate graphical depiction of the density curve over the test statistic vs denisty
+# Example usage
+# Good example
+set.seed(1)
+n = 50
+p1 = 0.6
+p2 = 0.4
+group.labels = c(rep(1, n), rep(2, n))
+permutation.test(group.labels, responses(p1,p2,n), num.reps = 1000)
+#Example passes correctly
 
-# Bad Example:
-# set.seed(3)
-# n = 50
-# p1 = 0.6
-# p2 = 0.4
-# responses = c(rbinom(n, 1, p1), rbinom(n, 1, p2))
-# group.labels = c(rep(1, n), rep(2, n))
-# permutation_test(group.labels, responses, num_reps = -5)
-  # Returns: Error in permutation_test(group.labels, responses, num_reps = -5) : 
-  #          Can not have negative permutations
 
-# test.that("Permutation test works", permutation.test(c(rep(1, n), rep(2, n)), c(rbinom(n, 1, .4), rbinom(n, 1, .6)), num.reps = 1000))
+#Bad example
+set.seed(2)
+n = 80
+p1 = -0.6
+p2 = 0.7
+group.labels = c(rep(1, n), rep(2, n))
+permutation.test(group.labels, responses(p1,p2,n), num.reps = 1000)
+#Example correctly throws error, p1 can not be negative
+# Error in responses(p1, p2, n) : 
+#  P1 and P2 can not be less than 0 or greater than 1
+
+
+#Bad example
+set.seed(3)
+n = 30
+p1 = 1.6
+p2 = 0.3
+group.labels = c(rep(1, n), rep(2, n))
+permutation.test(group.labels, responses(p1,p2,n), num.reps = 1000)
+#Example correctly throws error, p1 can not exceed 1
+# Error in responses(p1, p2, n) : 
+  P1 and P2 can not be less than 0 or greater than 1
+
+
+#Bad example
+set.seed(4)
+n = 70
+p1 = 0.4
+p2 = 0.9
+group.labels = c(rep(1, n), rep(2, n))
+permutation.test(group.labels, responses(p1,p2,n), num.reps = -10)
+#Example correctly throws error, num.reps can not be negative
+# Error in permutation.test(group.labels, responses(p1, p2, n), num.reps = -10) : 
+  Can not have negative permutations
+
+
 
 
 
