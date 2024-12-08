@@ -5,13 +5,21 @@
 library(testthat)
 library(ggplot2)
 
+responses = function(p1, p2, n) { #Function to take in the responses of the given data
+  if (p1 < 0 || p2 < 0 || p1 >1 || p2 > 1) { #Ensures that all the probabilities are valid and legal probabilities.
+    stop("P1 and P2 can not be less than 0 or greater than 1")
+  }
+  response = c(rbinom(n, 1, p1), rbinom(n, 1, p2))
+  return(response) #Retuens the randomized probabilities when correct
+}
+
 permutation.test = function (group.labels, responses, num.reps) {
 # Group.labels = the labels 1 or 2 assigned to each piece of observed data
 # Responses = the actual pieces of data responses
 # num_reps = number of times to permutate the test
   #Check to make sure it is a valid test
   if (!is.numeric(num.reps) || num.reps <= 0) {
-    stop("Can not have negative permutations")
+    stop("Number of reps must be a real number greater than 0")
   }
   
   #Find the test statistic
@@ -52,6 +60,30 @@ set.seed(1)
 n = 50
 p1 = 0.6
 p2 = 0.4
-responses = c(rbinom(n, 1, p1), rbinom(n, 1, p2))
 group.labels = c(rep(1, n), rep(2, n))
-permutation.test(group.labels, responses, num.reps = 1000)
+permutation.test(group.labels, responses(p1,p2,n), num.reps = 1000)
+#Example passes correctly
+
+set.seed(2)
+n = 50
+p1 = -0.6
+p2 = 0.4
+group.labels = c(rep(1, n), rep(2, n))
+permutation.test(group.labels, responses(p1,p2,n), num.reps = 1000)
+#Example correctly throws error, p1 can not be negative
+
+set.seed(3)
+n = 50
+p1 = 1.6
+p2 = 0.4
+group.labels = c(rep(1, n), rep(2, n))
+permutation.test(group.labels, responses(p1,p2,n), num.reps = 1000)
+#Example correctly throws error, p1 can not exceed 1
+
+set.seed(4)
+n = 70
+p1 = 0.4
+p2 = 0.9
+group.labels = c(rep(1, n), rep(2, n))
+permutation.test(group.labels, responses(p1,p2,n), num.reps = -10)
+#Example correctly throws error, num.reps can not be negative
