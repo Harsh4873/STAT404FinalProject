@@ -61,3 +61,35 @@ Create a narrative document describing the full functionality of your package. I
 # negative sample size:
 # visualize_confidence_levels(p1 = 0.6, p2 = 0.5, n1 = -30, n2 = 30, rep_steps = c(10, 50))
 # The error is that sample sizes n1 and n2 must be positive integers
+
+
+
+
+# Permutation Tests (Race Zwieg)
+# These tests are intended to redistribute the group numbers along the observations and calculate the statistic of interest.
+# The purpose of these tests is to see if there is a distinctive difference between the observed test statistic and the reallocated test statistic.
+
+# Below are a few examples of the Permutation tests in action:
+
+# Good example: 
+# set.seed(2)
+# n = 50
+# p1 = 0.6
+# p2 = 0.4
+# responses = c(rbinom(n, 1, p1), rbinom(n, 1, p2))
+# group.labels = c(rep(1, n), rep(2, n))
+# permutation_test(group.labels, responses, num_reps = 1000)
+    # This returns an accurate graphical depiction of the density curve over the test statistic vs denisty
+
+# Bad Example:
+# set.seed(3)
+# n = 50
+# p1 = 0.6
+# p2 = 0.4
+# responses = c(rbinom(n, 1, p1), rbinom(n, 1, p2))
+# group.labels = c(rep(1, n), rep(2, n))
+# permutation_test(group.labels, responses, num_reps = -5)
+  # Returns: Error in permutation_test(group.labels, responses, num_reps = -5) : 
+  #          Can not have negative permutations
+
+
