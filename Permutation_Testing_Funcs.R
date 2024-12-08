@@ -5,13 +5,21 @@
 library(testthat)
 library(ggplot2)
 
+responses = function(p1, p2, n) {
+  if (p1 < 0 || p2 < 0 || p1 >1 || p2 > 1) {
+    stop("P1 and P2 can not be less than 0 or greater than 1")
+  }
+  response = c(rbinom(n, 1, p1), rbinom(n, 1, p2))
+  return(response)
+}
+
 permutation.test = function (group.labels, responses, num.reps) {
 # Group.labels = the labels 1 or 2 assigned to each piece of observed data
 # Responses = the actual pieces of data responses
 # num_reps = number of times to permutate the test
   #Check to make sure it is a valid test
   if (!is.numeric(num.reps) || num.reps <= 0) {
-    stop("Can not have negative permutations")
+    stop("Permutations must be greater than 0")
   }
   
   #Find the test statistic
@@ -46,12 +54,3 @@ permutation.test = function (group.labels, responses, num.reps) {
     labs(title = "Density Curve", x = "Test Statistic", y = "Density") +
     theme_grey()
 }
-
-# Example usage
-set.seed(1)
-n = 50
-p1 = 0.6
-p2 = 0.4
-responses = c(rbinom(n, 1, p1), rbinom(n, 1, p2))
-group.labels = c(rep(1, n), rep(2, n))
-permutation.test(group.labels, responses, num.reps = 1000)
