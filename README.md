@@ -2,22 +2,17 @@
 
 # Discussion
 
-We have divided the project into distinct sections and assigned each team member specific responsibilities to ensure efficient progress and integration of our work. Utilizing a divide and conquer approach aligned with a top-down design philosophy, each member focuses on their area of expertise:
-
-- **Harsh Dave** is implementing the design, examples, and testing for **Core Simulation Functions** and **Sampling Distribution Visualization**.
-- **Ritvik** is focused on creating the **Confidence Interval Analyses**.
-- **Race** is responsible for designing and facilitating the **Permutation Test**.
-- **Chris** is implementing the **Bootstrap Analysis**.
+We will divide the sections and then complete the designs, testing, and examples on all of these using a divide and conquer approach while adhering to the top down design. Harsh will focus on implementing the design, examples, and testing for Core Simulating Functions and Sampling Distribution Visualization.  Ritvik will focus on creating the  Confidence Interval analyses. Race will design and facilitate the Permutation test. Finally, Chris will focus on implementing the bootstrap analysis. 
 
 # Project Goal and Overview
 
 **Project Goal**
 
-This project is designed to provide hands-on experience in R software development by applying fundamentals and best practices covered in STAT 404. Key focus areas include simulations, top-down design, testing, and signal conditioning, culminating in the creation of a simplified R package.
+This project is designed to give experience on R software development by using the fundamentals and best practices covered in STAT 404 including but not limited to simulations, top down design, testing, and signal conditioning. It is a stripped down version of creating an R package.
 
 **Project Overview**
 
-Our group will develop functions with appropriate tests to simulate and visualize foundational concepts taught in STAT 211/212 and beyond. Specifically, we will employ repeated simulations to illustrate the following ideas:
+Your group will create functions with appropriate tests to simulate and visualize fundamentals learned in 211/212 and beyond. Specifically, you will use repeated simulations to communicate the following ideas:
 
 1. **Visualize theoretical sampling distributions**
 2. **Confidence levels**

@@ -18,13 +18,13 @@
 visualize_confidence_levels <- function(p1, p2, n1, n2, rep_steps, alpha = 0.05) {
   # input validation
   if (!is.numeric(n1) || !is.numeric(n2) || n1 <= 0 || n2 <= 0) {
-    stop("Sample sizes n1 and n2 must be positive integers.")
+    stop("Sample sizes n1 and n2 have to be positive integers.")
   }
   if (!is.numeric(p1) || !is.numeric(p2) || p1 < 0 || p1 > 1 || p2 < 0 || p2 > 1) {
-    stop("Proportions p1 and p2 must be between 0 and 1.")
+    stop("Proportions p1 and p2 have to be between 0 and 1.")
   }
   if (!is.numeric(rep_steps) || any(rep_steps <= 0)) {
-    stop("Repetition steps (rep_steps) must be a numeric vector of positive values.")
+    stop("Repetition steps (rep_steps) have to be a numeric vector of positive values.")
   }
   
   # nested function whoch simulates the confidence intervals for a given number of repetitions
@@ -66,7 +66,7 @@ visualize_confidence_levels <- function(p1, p2, n1, n2, rep_steps, alpha = 0.05)
   # visualization using the ggplot2 package
   library(ggplot2)
   ggplot(results_df, aes(x = Repetitions, y = Proportion)) +
-    geom_line(color = "blue", size = 1) +
+    geom_line(color = "blue", linewidth = 1) +
     geom_hline(yintercept = 1 - alpha, linetype = "dashed", color = "red") +
     labs(
       title = "Empirical Confidence Levels for Repeated Sampling",
