@@ -1,5 +1,6 @@
 library(testthat)
-library(sim_funcs) 
+library(here)
+source(here("R", "sim_funcs.R"))
 
 # Tests for simulation_of_binary_response
 test_that("simulation_of_binary_response returns correct length and binary values", {
@@ -57,7 +58,7 @@ test_that("calculate_the_difference_in_proportions errors for incorrect data str
 test_that("calculate_the_difference_in_proportions handles missing values appropriately", {
   data <- data.frame(
     group = factor(c(rep(1, 100), rep(2, 100))),
-    response = c(rep(1, 60), rep(0, 40), rep(1, 50), NA)
+    response = c(rep(1, 60), rep(0, 40), rep(1, 50), rep(0, 49), NA)
   )
   expect_error(calculate_the_difference_in_proportions(data), "'response' column must contain only 0s and 1s.")
 })
@@ -75,7 +76,7 @@ test_that("repeated_simulations_for_one_simulation differences are reasonable", 
 })
 
 test_that("repeated_simulations_for_one_simulation errors for negative numbers", {
-  expect_error(repeated_simulations_for_one_simulation(p1 = 0.5, p2 = 0.5, n1 = -50, n2 = 50, num_simulations = 100), "'n1' must be a positive integer.")
+  expect_error(repeated_simulations_for_one_simulation(p1 = 0.5, p2 = 0.5, n1 = -50, n2 = 50, num_simulations = 100), "Sample sizes 'n1' and 'n2' must be positive integers.")
 })
 
 # Tests for visualize_theoretical_sampling_distribution
