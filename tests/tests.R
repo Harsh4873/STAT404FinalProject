@@ -134,8 +134,6 @@ test_that("visualize_confidence_levels produces valid plot with correct input", 
   expect_s3_class(plot$layers[[1]]$geom, "GeomLine")
   expect_s3_class(plot$layers[[2]]$geom, "GeomHline")
   
-  # Add this line to display the plot
-  print(plot)
 })
 
 test_that("visualize_confidence_levels errors for invalid proportions", {
@@ -613,7 +611,7 @@ test_that("PERMUTATION.TEST function works", {
 })
 
 # Output after Permutation_Testing_Funcs.R tests: 
-#==> Testing R file using 'testthat'
+# ==> Testing R file using 'testthat'
 # 
 # [ FAIL 0 | WARN 0 | SKIP 0 | PASS 76 ]
 # Test complete
