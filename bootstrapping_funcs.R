@@ -11,7 +11,7 @@ calc_bootstrap_stats <- function(x1, n1, x2, n2, n_bootstrap = 1000, conf_level 
       !is.numeric(n_bootstrap) || !is.numeric(conf_level)) {
     stop("All inputs (x1, n1, x2, n2, n_bootstrap, conf_level) must be numeric.")
   }
-  e
+  
   if (!(x1 %% 1 == 0 && n1 %% 1 == 0 &&
         x2 %% 1 == 0 && n2 %% 1 == 0 &&
         n_bootstrap %% 1 == 0)) {
