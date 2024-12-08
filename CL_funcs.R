@@ -75,3 +75,4 @@ visualize_confidence_levels <- function(p1, p2, n1, n2, rep_steps, alpha = 0.05)
     ) +
     theme_minimal()
 }
+print(plot)
