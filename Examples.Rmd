@@ -148,6 +148,18 @@
 
 # test.that("Permutation test works", permutation.test(c(rep(1, n), rep(2, n)), c(rbinom(n, 1, .4), rbinom(n, 1, .6)), num.reps = 1000))
 
+# Bad example
+# set.seed(4)
+# n = 70
+# p1 = 0.4
+# p2 = 0.9
+# group.labels = c(rep(1, n), rep(2, n))
+# permutation.test(group.labels, responses(p1,p2,n), num.reps = -10)
+#Example correctly throws error, num.reps can not be negative
+# Error in permutation.test(group.labels, responses(p1, p2, n), num.reps = -10) : 
+#  Can not have negative permutations
+
+
 # Bootstrapping (Christopher Coleman)
 # These functions are intended to perform the bootstrapping algorithm to calculate simulated test statistics and visualize their differences
 # The purpose of these functions is to attempt to create a theoretical confidence interval without mathematical derivation of a function for our parameters.

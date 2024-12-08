@@ -19,7 +19,6 @@ test_that("simulation_of_binary_response produces expected proportion", {
   expect_equal(mean(result), 0.6, tolerance = 0.01)
 })
 
-
 # Confirm output values are 0 or 1
 test_that("simulation_of_binary_response errors for invalid probability", {
   expect_error(simulation_of_binary_response(p = 1.2, n = 30), "p has to be between 0 and 1.")
@@ -134,7 +133,9 @@ test_that("visualize_confidence_levels produces valid plot with correct input", 
   # Check if essential plot elements are present
   expect_s3_class(plot$layers[[1]]$geom, "GeomLine")
   expect_s3_class(plot$layers[[2]]$geom, "GeomHline")
-
+  
+  # Add this line to display the plot
+  print(plot)
 })
 
 test_that("visualize_confidence_levels errors for invalid proportions", {
@@ -208,7 +209,7 @@ test_that("visualize_confidence_levels produces reasonable confidence levels", {
 # Test complete
 
 source(here("R", "bootstrapping_funcs.R"))
-  
+
 test_that("calc_bootstrap_stats works on valid simple input", {
   # test with good good inputs
   x1 <- 10
@@ -498,8 +499,7 @@ test_that("calc_bootstrap_stats errors when conf_level is not between 0 and 1", 
   )
 })
 
-
-#test valid ranges here
+# test valid ranges here
 test_that("calc_bootstrap_stats returns valid numerical ranges", {
   x1 <- 10
   n1 <- 20
@@ -507,18 +507,14 @@ test_that("calc_bootstrap_stats returns valid numerical ranges", {
   n2 <- 25
   result <- calc_bootstrap_stats(x1, n1, x2, n2)
   
-
   expect_true(result$diff_hat >= -1 && result$diff_hat <= 1)
   
-
   expect_true(result$SE_theoretical >= 0)
   expect_true(result$SE_bootstrap >= 0)
   
-
   expect_true(result$CI_theoretical[1] <= result$CI_theoretical[2])
   expect_true(result$CI_bootstrap[1] <= result$CI_bootstrap[2])
 })
-
 
 # all of our inputs are validated, so just make sure it works here
 test_that("visualize_bootstrap_stats runs without errors", {
@@ -535,6 +531,89 @@ test_that("visualize_bootstrap_stats runs without errors", {
 
 # Output after bootstrapping_funcs.R tests: 
 # ==> Testing R file using 'testthat'
-
+# 
 # [ FAIL 0 | WARN 0 | SKIP 0 | PASS 64 ]
+# Test complete
+
+source(here("R", "Permutation_Testing_Funcs.R"))
+
+# Hard tests / examples
+test_that("Hard example permutation test works correctly", {
+  set.seed(1)
+  n <- 50
+  p1 <- 0.6
+  p2 <- 0.4
+  group.labels <- c(rep(1, n), rep(2, n))
+  expect_silent(permutation.test(group.labels, responses(p1,p2,n), num.reps = 1000))
+})
+# Example passes correctly
+
+test_that("permutation test errors with negative p1", {
+  set.seed(2)
+  n <- 50
+  p1 <- -0.6
+  p2 <- 0.4
+  group.labels <- c(rep(1, n), rep(2, n))
+  expect_error(permutation.test(group.labels, responses(p1,p2,n), num.reps = 1000))
+})
+# Example correctly throws error, p1 can not be negative
+
+test_that("permutation test errors with p1 > 1", {
+  set.seed(3)
+  n <- 50
+  p1 <- 1.6
+  p2 <- 0.4
+  group.labels <- c(rep(1, n), rep(2, n))
+  expect_error(permutation.test(group.labels, responses(p1,p2,n), num.reps = 1000))
+})
+# Example correctly throws error, p1 can not exceed 1
+
+test_that("permutation test errors with negative num.reps", {
+  set.seed(4)
+  n <- 70
+  p1 <- 0.4
+  p2 <- 0.9
+  group.labels <- c(rep(1, n), rep(2, n))
+  expect_error(permutation.test(group.labels, responses(p1,p2,n), num.reps = -10))
+})
+# Example correctly throws error, num.reps can not be negative
+
+# Test_That functions
+test_that("RESPONSES function works", {
+  set.seed(1)
+  n = 50
+  p1 = 0.6
+  p2 = 0.4
+  
+  # Test for valid inputs
+  response = responses(p1, p2, n)
+  expect_length(response, 2 * n)
+  expect_true(all(response %in% c(0, 1))) # Responses should be 0 or 1
+  
+  # Test for invalid probabilities
+  expect_error(responses(-0.6, 0.4, n), "P1 and P2 can not be less than 0 or greater than 1")
+  expect_error(responses(1.6, 0.4, n), "P1 and P2 can not be less than 0 or greater than 1")
+  expect_error(responses(0.6, -0.4, n), "P1 and P2 can not be less than 0 or greater than 1")
+})
+
+test_that("PERMUTATION.TEST function works", {
+  set.seed(1)
+  n = 50
+  p1 = 0.6
+  p2 = 0.4
+  group.labels = c(rep(1, n), rep(2, n))
+  responses_data = responses(p1, p2, n)
+  
+  # ensure there are no errors from p1,p2,n inputs
+  expect_silent(permutation.test(group.labels, responses_data, num.reps = 1000))
+  
+  # test to make sure the num_reps is valid
+  expect_error(permutation.test(group.labels, responses_data, num.reps = -50), "Can not have negative permutations")
+  expect_error(permutation.test(group.labels, responses_data, num.reps = "fifty"), "Num_reps must be a valid number") # Fails because "fifty" is not a number
+})
+
+# Output after Permutation_Testing_Funcs.R tests: 
+#==> Testing R file using 'testthat'
+# 
+# [ FAIL 0 | WARN 0 | SKIP 0 | PASS 76 ]
 # Test complete
