@@ -5,6 +5,41 @@ calc_bootstrap_stats <- function(x1, n1, x2, n2, n_bootstrap = 1000, conf_level 
   #n_bootstrap is, unsurprisingly, the number of bootstraps, default 1000 but it can be changed
   #conf_level is the confidence level or our 1- alpha, default 0.95 or alpha = 0.05
   
+  # validation
+  
+  if (!is.numeric(x1) || !is.numeric(n1) || !is.numeric(x2) || !is.numeric(n2) ||
+      !is.numeric(n_bootstrap) || !is.numeric(conf_level)) {
+    stop("All inputs (x1, n1, x2, n2, n_bootstrap, conf_level) have to be numeric.")
+  }
+  
+  # Check for integer values using a more reliable method
+  if (!all(c(x1, n1, x2, n2, n_bootstrap) == floor(c(x1, n1, x2, n2, n_bootstrap)))) {
+    stop("x1, n1, x2, n2, and n_bootstrap have to be integers.")
+  }
+  
+  if (x1 < 0 || x2 < 0) {
+    stop("Number of successes (x1, x2) cannot be negative.")
+  }
+  
+  if (n1 <= 0 || n2 <= 0) {
+    stop("Number of observations (n1, n2) have to be greater than zero.")
+  }
+  
+  if (x1 > n1) {
+    stop("Number of successes x1 cannot exceed number of observations n1.")
+  }
+  
+  if (x2 > n2) {
+    stop("Number of successes x2 cannot exceed number of observations n2.")
+  }
+  
+  if (n_bootstrap <= 0) {
+    stop("n_bootstrap have to be a positive integer.")
+  }
+  
+  if (conf_level <= 0 || conf_level >= 1) {
+    stop("conf_level have to be a number between 0 and 1.")
+  }
   
   # we get our proportions here
   p1_hat <- x1 / n1
@@ -62,9 +97,7 @@ calc_bootstrap_stats <- function(x1, n1, x2, n2, n_bootstrap = 1000, conf_level 
   )
   
   return(results)
-  
 }
-
 
 
 visualize_bootstrap_stats <- function(bootstrap_diffs, CI_theoretical, CI_bootstrap, conf_level = 0.95) {
@@ -91,8 +124,3 @@ visualize_bootstrap_stats <- function(bootstrap_diffs, CI_theoretical, CI_bootst
 
   
 }
-
-
-
-
-

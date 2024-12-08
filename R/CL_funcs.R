@@ -24,7 +24,7 @@ visualize_confidence_levels <- function(p1, p2, n1, n2, rep_steps, alpha = 0.05)
     stop("Proportions p1 and p2 have to be between 0 and 1.")
   }
   if (!is.numeric(rep_steps) || any(rep_steps <= 0)) {
-    stop("Repetition steps (rep_steps) have to be a numeric vector of positive values.")
+    stop("Repetition steps have to be a numeric vector of positive values.")
   }
   
   # nested function whoch simulates the confidence intervals for a given number of repetitions
@@ -65,7 +65,7 @@ visualize_confidence_levels <- function(p1, p2, n1, n2, rep_steps, alpha = 0.05)
   
   # visualization using the ggplot2 package
   library(ggplot2)
-  ggplot(results_df, aes(x = Repetitions, y = Proportion)) +
+  ggplot(results_df, aes(x = .data$Repetitions, y = .data$Proportion)) +
     geom_line(color = "blue", linewidth = 1) +
     geom_hline(yintercept = 1 - alpha, linetype = "dashed", color = "red") +
     labs(

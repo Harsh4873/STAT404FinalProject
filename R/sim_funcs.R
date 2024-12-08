@@ -139,7 +139,7 @@ visualize_theoretical_sampling_distribution <- function(simulation_results, true
   #Add labels and title
   df <- data.frame(difference = simulation_results)
   
-  p <- ggplot(df, aes(x = difference)) +
+  p <- ggplot(df, aes(x = .data$difference)) +
     geom_histogram(aes(y = after_stat(density)), binwidth = 0.02, fill = "skyblue", color = "black", alpha = 0.7) +
     geom_density(color = "blue", linewidth = 1) +
     geom_vline(xintercept = true_difference, color = "red", linetype = "dashed", linewidth = 1) +
