@@ -81,6 +81,8 @@ Create a narrative document describing the full functionality of your package. I
 # permutation_test(group.labels, responses, num_reps = 1000)
     # This returns an accurate graphical depiction of the density curve over the test statistic vs denisty
 
+test.that("Permutation test works", permutation.test(c(rep(1, n), rep(2, n)), c(rbinom(n, 1, .4), rbinom(n, 1, .6)), num.reps = 1000))
+
 # Bad Example:
 # set.seed(3)
 # n = 50
