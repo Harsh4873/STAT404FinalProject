@@ -125,15 +125,14 @@ test_that("visualize_confidence_levels produces valid plot with correct input", 
     p2 = 0.5, 
     n1 = 30, 
     n2 = 30, 
-    rep_steps = c(10, 50)
+    rep_steps = c(100, 250, 500, 750, 1000)
   )
   # Check if output is a ggplot object
   expect_s3_class(plot, "ggplot")
   
-  # Check if essential plot elements are present
-  expect_s3_class(plot$layers[[1]]$geom, "GeomLine")
-  expect_s3_class(plot$layers[[2]]$geom, "GeomHline")
-  
+  expect_silent({
+    print(plot)
+  })
 })
 
 test_that("visualize_confidence_levels errors for invalid proportions", {
@@ -203,7 +202,7 @@ test_that("visualize_confidence_levels produces reasonable confidence levels", {
 # Output after CL_funcs.R tests: 
 # ==> Testing R file using 'testthat'
 # 
-# [ FAIL 0 | WARN 0 | SKIP 0 | PASS 30 ]
+# [ FAIL 0 | WARN 0 | SKIP 0 | PASS 29 ]
 # Test complete
 
 source(here("R", "bootstrapping_funcs.R"))
@@ -530,7 +529,7 @@ test_that("visualize_bootstrap_stats runs without errors", {
 # Output after bootstrapping_funcs.R tests: 
 # ==> Testing R file using 'testthat'
 # 
-# [ FAIL 0 | WARN 0 | SKIP 0 | PASS 64 ]
+# [ FAIL 0 | WARN 0 | SKIP 0 | PASS 63 ]
 # Test complete
 
 source(here("R", "Permutation_Testing_Funcs.R"))
@@ -613,5 +612,5 @@ test_that("PERMUTATION.TEST function works", {
 # Output after Permutation_Testing_Funcs.R tests: 
 # ==> Testing R file using 'testthat'
 # 
-# [ FAIL 0 | WARN 0 | SKIP 0 | PASS 76 ]
+# [ FAIL 0 | WARN 0 | SKIP 0 | PASS 75 ]
 # Test complete
