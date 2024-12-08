@@ -16,3 +16,9 @@ Designed and implemented the permutation tests for the project. I first began by
 This included allocating the appropriate group numbers, calculating the means for the groups, and using that data to calculate the test statistic.
 Next, a ggplot histogram was created, overlayed with a density line to visualize the permutation and theoretucal sampling distribution.
 Finally, these permutations were tested using test_that and a few example seeds and numbers. These tests all returned affirmative and correct.
+
+
+
+
+Christopher Coleman - 
+Designed and implemented a function which runs the bootstrapping process on our data. I started with data validation ensuring our inputs were valid, even though they should be validated earlier. I then calculated sample statistics to get our theoretical values. After this, I implemented the bootstrapping algorithm, which is really just a simple loop randomly sampling from our gathered data and appending them all to one big list. We then return that list. The inputs outputs were tested using test_that, all of which passed as expected. Finally, I created the visualization function, which was just a simple ggplot showing the theoretical and calculated (bootstrap) confidence intervals.
