@@ -29,8 +29,7 @@ permutation.test = function (group.labels, responses, num.reps) {
     perm.group2 = responses[permuted.labels == 2] 
     perm.p1.hat = mean(perm.group1) #Calculate the statistic mean
     perm.p2.hat = mean(perm.group2)
-    permuted.test.statistics[i] = (perm.p1.hat - perm.p2.hat) / 
-      sqrt((perm.p1.hat * (1 - perm.p1.hat)) / length(perm.group1) + (perm.p2.hat * (1 - perm.p2.hat)) / length(perm.group2))
+    permuted.test.statistics[i] = (perm.p1.hat - perm.p2.hat) /sqrt((perm.p1.hat * (1 - perm.p1.hat)) / length(perm.group1) + (perm.p2.hat * (1 - perm.p2.hat)) / length(perm.group2))
   }
   
   #Null Mean and Standard Deviation
@@ -43,7 +42,7 @@ permutation.test = function (group.labels, responses, num.reps) {
   density.df = data.frame(x = density.data$x, y = density.data$y) #Density data frame
   ggplot(density.df, aes(x = x, y = y)) + #Plotting function
     geom_line(color = "blue", size = 1) +      #Plot the curve for the density
-    geom_histogram(aes(y = ..density..), binwidth = 0.1, fill = "green", alpha = 0.5) +  # Plot histogram with density scale
+    geom_histogram(aes(y = ..density..), binwidth = 0.1, fill = "green", alpha = 0.5) +  # Plot the histogram with density scale
     labs(title = "Density Curve", x = "Test Statistic", y = "Density") +
     theme_grey()
 }
