@@ -116,4 +116,74 @@
 # negative sample size:
 # visualize_confidence_levels(p1 = 0.6, p2 = 0.5, n1 = -30, n2 = 30, rep_steps = c(10, 50))
 # The error is that sample sizes n1 and n2 must be positive integers
+
+
+# Permutation Tests (Race Zwieg)
+
+# These tests are intended to redistribute the group numbers along the observations and calculate the statistic of interest.
+# The purpose of these tests is to see if there is a distinctive difference between the observed test statistic and the reallocated test statistic.
+
+# Below are a few examples of the Permutation tests in action:
+
+# Good example: 
+# set.seed(2)
+# n = 50
+# p1 = 0.6
+# p2 = 0.4
+# responses = c(rbinom(n, 1, p1), rbinom(n, 1, p2))
+# group.labels = c(rep(1, n), rep(2, n))
+# permutation_test(group.labels, responses, num_reps = 1000)
+    # This returns an accurate graphical depiction of the density curve over the test statistic vs denisty
+
+# Bad Example:
+# set.seed(3)
+# n = 50
+# p1 = 0.6
+# p2 = 0.4
+# responses = c(rbinom(n, 1, p1), rbinom(n, 1, p2))
+# group.labels = c(rep(1, n), rep(2, n))
+# permutation_test(group.labels, responses, num_reps = -5)
+  # Returns: Error in permutation_test(group.labels, responses, num_reps = -5) : 
+  #          Can not have negative permutations
+
+# test.that("Permutation test works", permutation.test(c(rep(1, n), rep(2, n)), c(rbinom(n, 1, .4), rbinom(n, 1, .6)), num.reps = 1000))
+
+# Bootstrapping (Christopher Coleman)
+# These functions are intended to perform the bootstrapping algorithm to calculate simulated test statistics and visualize their differences
+# The purpose of these functions is to attempt to create a theoretical confidence interval without mathematical derivation of a function for our parameters.
+
+# Examples
+
+# Bootstrapping algorithm with good input
+# x1 <- 10
+# n1 <- 20
+# x2 <- 15
+# n2 <- 25
+#result <- calc_bootstrap_stats(x1, n1, x2, n2)
+
+# returns a list of lists of everything used in the bootstrap calculations needed for visualization
+# specifically, lists of the difference between simulated statistics, theoretical SE, bootstrap SE, theoretical CI, bootstrap CI, bootstrap differences, and confidence level 
+
+# Bootstrapping algorithm with bad input
+
+# x1 <- 10
+# n1 <- 20
+# x2 <- 15
+# n2 <- -25
+# result <- calc_bootstrap_stats(x1, n1, x2, n2)
+
+# Returns: Error in calc_bootstrap_stats(x1, n1, x2, n2) : 
+#          Number of observations (n1, n2) must be greater than zero.
+
+# Visualization (takes input from the result list)
+
+# x1 <- 10
+# n1 <- 20
+# x2 <- 15
+# n2 <- 25
+# result <- calc_bootstrap_stats(x1, n1, x2, n2)
+
+# visualize_bootstrap_stats(result$bootstrap_diffs, result$CI_theoretical, result$CI_bootstrap)
+
+# produces a graph showing the difference between the theoretical CI and bootstrap CI
 ```

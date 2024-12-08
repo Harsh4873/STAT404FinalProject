@@ -13,11 +13,20 @@ For each member list the major activities they contributed to: design, testing, 
 # Author Contributions
 
 ## Harsh Dave
-Harsh focused on creating the Core Simulation Functions, including the design and coding of `simulation_of_binary_response`, `simulation_for_two_sample_data`, `calculate_the_difference_in_proportions`, `repeated_simulations_for_one_simulation`, and `visualize_theoretical_sampling_distribution`. Additionally, Harsh helped develop examples and tests for each of these functions in the resepctive places: 'tests.R' and 'Examples.Rmd'. Harsh also participated in the debugging process and contributed to the overall project design strategy.
+Harsh focused on creating the Core Simulation Functions, including the design and coding of `simulation_of_binary_response`, `simulation_for_two_sample_data`, `calculate_the_difference_in_proportions`, `repeated_simulations_for_one_simulation`, and `visualize_theoretical_sampling_distribution`. Additionally, Harsh helped develop examples and tests for each of these functions in the resepctive places: `tests.R` and `Examples.Rmd`. Harsh also participated in the debugging process and contributed to the overall project design strategy.
 
 ## Ritvik V
+Ritvik focused on developing the Confidence Interval Simulation Module, designing and coding the following core functions: `simulate_ci` that is a nested function in `visualize_confidence_levels` responsible for simulating binary outcomes for two groups, calculating confidence intervals, and determining whether the true difference in proportions falls within the interval, `visualize_confidence_levels` which visualizes the results with ggplot2, plotting empirical confidence levels against the number of repetitions and comparing them with the theoretical level.
 
+Ritvik authored detailed examples for `visualize_confidence_levels` in the `Examples.Rmd` file.
 
-## Chris
+Contributed to `tests.R`, implementing: tests for input validation, ensuring that probabilities are within [0, 1] and sample sizes are positive integers, tests to confirm the correct computation of confidence intervals and their containment of the true difference, and tests verifying that empirical confidence levels converge to the theoretical level as repetitions increase.
 
-## Race
+## Race Zwieg 
+Designed and implemented the permutation tests for the project. I first began by creating and calculating the test statistics for the repeated permutations.
+This included allocating the appropriate group numbers, calculating the means for the groups, and using that data to calculate the test statistic.
+Next, a ggplot histogram was created, overlayed with a density line to visualize the permutation and theoretucal sampling distribution.
+Finally, these permutations were tested using test_that and a few example seeds and numbers. These tests all returned affirmative and correct.
+
+## Christopher Coleman 
+Designed and implemented a function which runs the bootstrapping process on our data. I started with data validation ensuring our inputs were valid, even though they should be validated earlier. I then calculated sample statistics to get our theoretical values. After this, I implemented the bootstrapping algorithm, which is really just a simple loop randomly sampling from our gathered data and appending them all to one big list. We then return that list. The inputs outputs were tested using test_that, all of which passed as expected. Finally, I created the visualization function, which was just a simple ggplot showing the theoretical and calculated (bootstrap) confidence intervals.
